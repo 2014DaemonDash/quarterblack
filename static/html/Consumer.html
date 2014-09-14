@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
+<link type="text/css" rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"/>
+<script>
+
+var myList=[{"Restaurant" : "abc", "Address" : 50, "Phone Number":123214},
+            {"Restaurant" : "abc", "Address" : 50, "Phone Number":123214},
+{"Restaurant" : "abc", "Address" : 50, "Phone Number":123214}];
+
+// Builds the HTML Table out of myList json data from Ivy restful service.
+ function buildHtmlTable() {
+     var columns = addAllColumnHeaders(myList);
+ 
+     for (var i = 0 ; i < myList.length ; i++) {
+         var row$ = $('<tr/>');
+         for (var colIndex = 0 ; colIndex < columns.length ; colIndex++) {
+             var cellValue = myList[i][columns[colIndex]];
+ 
+             if (cellValue == null) { cellValue = ""; }
+ 
+             row$.append($('<td/>').html(cellValue));
+         }
+         $("#dataTable").append(row$);
+     }
+ }
+ 
+ // Adds a header row to the table and returns the set of columns.
+ // Need to do union of keys from all records as some records may not contain
+ // all records
+ function addAllColumnHeaders(myList)
+ {
+     var columnSet = [];
+     var headerTr$ = $('<tr/>');
+ 
+     for (var i = 0 ; i < myList.length ; i++) {
+         var rowHash = myList[i];
+         for (var key in rowHash) {
+             if ($.inArray(key, columnSet) == -1){
+                 columnSet.push(key);
+                 headerTr$.append($('<th/>').html(key));
+             }
+         }
+     }
+     $("#dataTable").append(headerTr$);
+ 
+     return columnSet;
+ }
+</script>
+<title>Consumers</title>
+</head>
+<body onLoad="buildHtmlTable()">
+ <h1 style="text-align:center" >Restauraunts that support MUNCHIES</h1><br><br><br>
+ <div>
+     <table id="dataTable" class="table table-striped">
+   </table>
+</div>
+ 
+
+</body>
+</html>

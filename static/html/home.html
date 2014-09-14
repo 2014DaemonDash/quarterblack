@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="https://raw.githubusercontent.com/marioizquierdo/jquery.serializeJSON/master/jquery.serializejson.min.js"></script>
+<link type="text/css" rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.css"/>
+<script type="text/javascript" >
+$(document).ready(function(){
+$("#zipSub").click(function(e)
+	{
+    var zip = document.getElementById('zipcodeInput').value
+    zip = "http://localhost:8080/search/" + zip
+    console.log(zip)
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET",zip,true);
+    xmlHttp.send(null);
+    console.log(xmlHttp.responseText);
+    e.PreventDefault();
+
+	});
+	});
+
+// $.fn.serializeObject = function()
+// {
+//     var o = {};
+//     var a = this.serializeArray();
+//     $.each(a, function() {
+//         if (o[this.name] !== undefined) {
+//             if (!o[this.name].push) {
+//                 o[this.name] = [o[this.name]];
+//             }
+//             o[this.name].push(this.value || '');
+//         } else {
+//             o[this.name] = this.value || '';
+//         }
+//     });
+//     return o;
+// };
+//
+// $(function() {
+//     $('form').submit(function() {
+//         $('#result').text(JSON.stringify($('form').serializeObject()));
+//         return false;
+//     });
+// });
+</script>
+</head>
+<div class="navbar-wrapper">
+      <div class="container">
+
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation" id="navb">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+            </div>
+            <div class="navbar-collapse collapse" >
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+
+                <li><a id="navT" href="#Mission">Mission</a></li>
+                <li><a id="navT" href="#partners">Partners</a></li>
+                <li><a id="navT" href="#share">Share</a></li>
+                  </ul>
+                </li>
+             </div></div></div></div></div>
+<body id="fontsize" style="text-align:center">
+   <img class="center-block"src="http://blogs.villagevoice.com/forkintheroad/vmunch.png">
+<form id="zip"class="form-horizontal">
+    <h1><br>Search Sustainable Restaurants</h1>
+    <input name="Zipcode" id="zipcodeInput" style="background-color:#D0F18F;" type="text" placeholder="Zip Code"><br>
+    <button id="zipSub" type="submit" class="btn">Submit</button>
+
+</form>
+   <form>
+
+<HR COLOR="green" WIDTH="60%">
+      <form class="form-horizontal">
+    <h1>Restaurant/FoodBank Log In</h1>
+    <input name="username" style="background-color:#D0F18F;" type="text" placeholder="Username"><br/>
+    <input name="password" style="background-color:#D0F18F;"type="Password" placeholder="Password"><br/>
+    <button id="fontsize" type="submit" class="btn">Submit</button>
+
+    <a class="btn" href="/signup/">Sign Up</a>
+</form>
+  <pre id="result"></pre>
+</body>
+</html>
