@@ -159,8 +159,12 @@ func initFileHandlers(r *mux.Router) {
         router.HandleFunc("/", serveHomeFile)
         rs := r.PathPrefix("/signup").Subrouter()
         rs.HandleFunc("/", serveSignUpFile)
-        d := r.PathPrefix("/consumer").Subrouter()
+        d := r.PathPrefix("/Consumer").Subrouter()
         d.HandleFunc("/", serveConsumerFile)
+        a := r.PathPrefix("/Restaurant").Subrouter()
+        a.HandleFunc("/", serveRestaurantFile)
+        b := r.PathPrefix("/FoodBank").Subrouter()
+        b.HandleFunc("/", serveFoodBankFile)
 
 }
 
